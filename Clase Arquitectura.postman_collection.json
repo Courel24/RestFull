@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "a0d46cae-d4a7-4e35-873f-fc99d41505f7",
+		"name": "Clase Arquitectura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15692620"
+	},
+	"item": [
+		{
+			"name": "Rest",
+			"item": [
+				{
+					"name": "InsertClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/clients?id='1006817313225'&name='Roberto'&address='Calle Falsa 123'&petName='Tony'",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "'1006817313225'"
+								},
+								{
+									"key": "name",
+									"value": "'Roberto'"
+								},
+								{
+									"key": "address",
+									"value": "'Calle Falsa 123'"
+								},
+								{
+									"key": "petName",
+									"value": "'Tony'"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertBooking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/bookings?id='1006817313225'&date='25/04/2025'",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "'1006817313225'"
+								},
+								{
+									"key": "date",
+									"value": "'25/04/2025'"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/pets?date='25/04/2025'",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pets"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "'25/04/2025'"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/bookings?id='1006817313225'",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "'1006817313225'"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
