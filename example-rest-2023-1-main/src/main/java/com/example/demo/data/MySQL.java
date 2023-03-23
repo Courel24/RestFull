@@ -1,8 +1,8 @@
 package com.example.demo.data;
 
 import com.example.demo.repository.DbHandler;
-import com.example.demo.controller.BookingDTO;
-import com.example.demo.controller.ClientDTO;
+import com.example.demo.controller.dto.BookingDTO;
+import com.example.demo.controller.dto.ClientDTO;
 
 import java.util.ArrayList;
 import java.sql.*;
@@ -80,7 +80,7 @@ public class MySQL implements DbHandler {
     }
 
     @Override
-    public List<BookingDTO> ObtainClientBookingHistory(String id) {
+    public List<BookingDTO> obtainClientBookingHistory(String id) {
         List<BookingDTO> bookings = new ArrayList<>();
         try {
             Class.forName("com.ibm.db2.jcc.DB2Driver");
@@ -89,7 +89,7 @@ public class MySQL implements DbHandler {
             stmt = con.createStatement();
             rs = stmt.executeQuery("SELECT Customer_document, Booking_date FROM booking where Customer_document=" + id + ";");
             while (rs.next()) {
-                bookings.add(BookingDTO.builder().id(rs.getString("Customer_document")).date(rs.getString("Booking_date")).build());
+                bookings.add(new BookingDTO(rs.getString("Customer_document"),rs.getString("Booking_date")));
             }
             rs.close();
             stmt.close();

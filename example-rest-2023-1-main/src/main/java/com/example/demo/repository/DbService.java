@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
-import com.example.demo.controller.BookingDTO;
-import com.example.demo.controller.ClientDTO;
+import com.example.demo.controller.dto.BookingDTO;
+import com.example.demo.controller.dto.ClientDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ public class DbService {
     }
     public String addClient(ClientDTO client){
         handler.insertClient(client);
-        return "cliente añadido";
+        return "client added";
     }
     public String addBooking(BookingDTO booking){
         if (handler.obtainBookingAmount(booking)<20){
             handler.insertBooking(booking);
-            return "reserva añadida";
+            return "booking added";
         } else {
-            return "guarderia llena, intente mañana";
+            return "Dog DayCare Full, Try tomorrow :)";
         }
 
     }
@@ -28,7 +28,7 @@ public class DbService {
         return handler.findPetsByDate(date);
     }
     public List<BookingDTO> getClientBookingHistory(String id){
-        return handler.ObtainClientBookingHistory(id);
+        return handler.obtainClientBookingHistory(id);
     }
 
 }
