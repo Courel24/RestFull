@@ -3,11 +3,9 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.ClientDTO;
-import com.example.demo.data.MySQL;
-import com.example.demo.repository.DbService;
+import com.example.demo.entity.MySQL;
+import com.example.demo.service.DbService;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.print.Book;
 
 @RestController
 public class DogDaycareController {
