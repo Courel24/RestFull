@@ -18,6 +18,8 @@ dependencies {
 	compileOnly ("org.projectlombok:lombok:1.18.24")
 	implementation ("com.ibm.db2.jcc:db2jcc:db2jcc4")
 	annotationProcessor("org.projectlombok:lombok:1.18.24")
+	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+	implementation("org.springframework.data:spring-data-jpa:3.0.4")
 
 }
 

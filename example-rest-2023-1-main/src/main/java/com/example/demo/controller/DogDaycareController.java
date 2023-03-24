@@ -3,7 +3,6 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.ClientDTO;
-import com.example.demo.entity.MySQL;
 import com.example.demo.service.DbService;
 import org.springframework.web.bind.annotation.*;
 

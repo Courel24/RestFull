@@ -2,14 +2,14 @@ package com.example.demo.service;
 
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.ClientDTO;
-import com.example.demo.repository.DbHandler;
+import com.example.demo.repository.ClientRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DbService {
-    private DbHandler handler;
-    public DbService(DbHandler handler){
+    private ClientRepository handler;
+    public DbService(ClientRepository handler){
         this.handler = handler;
     }
     public String addClient(ClientDTO client){
