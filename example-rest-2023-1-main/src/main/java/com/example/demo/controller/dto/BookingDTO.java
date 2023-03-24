@@ -6,14 +6,20 @@ import lombok.*;
 
 public class BookingDTO {
 
-    private String id;
+    private int id;
+
+    private int clientId;
+
+    private int petId;
     private String date;
 
     @Override
     public String toString() {
-        return "Booking{" +
+        return "BookingDTO{" +
                 "id=" + id +
-                ", date=" + date +
+                ", clientId=" + clientId +
+                ", petId=" + petId +
+                ", date='" + date +
                 '}';
     }
 

@@ -6,19 +6,19 @@ import lombok.*;
 
 public class ClientDTO {
 
-    private String id;
     private String name;
     private String address;
-    private String petName;
+
+    private String dateCreated;
+    private int id;
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name=" + name +
-                ", address=" + address +
-                ", petName=" + petName +
+        return "ClientDTO{" +
+                "name='" + name +
+                ", address='" + address +
+                ", dateCreated='" + dateCreated +
+                ", id=" + id +
                 '}';
     }
-
 }
