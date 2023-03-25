@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "256f7618-404b-428f-b395-8397652907c7",
+		"name": "Clase Arquitectura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25858695"
+	},
+	"item": [
+		{
+			"name": "Rest",
+			"item": [
+				{
+					"name": "InsertClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Yo\",\r\n    \"address\": \"Aca y ahora\",\r\n    \"date_created\": \"2023-03-24\",\r\n    \"document\": \"3333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertBooking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"client_id\": \"22222\",\r\n    \"pet_id\": \"1000987656\",\r\n    \"date\": \"2023-03-24\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/pets?date=2023-03-24",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pets"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2023-03-24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/bookings?id=22222",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "22222"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPetsByClient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/pets/22222",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pets",
+								"22222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertPet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"name\": \"pikoro\",\r\n    \"date_created\": \"2023-03-24\",\r\n    \"client\": \"3333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/pets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
