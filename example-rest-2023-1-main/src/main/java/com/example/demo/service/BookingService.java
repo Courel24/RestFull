@@ -22,8 +22,14 @@ public class BookingService {
         ExampleMatcher matcher = ExampleMatcher.matchingAny();
         System.out.println(bookingRepository.count(Example.of(probe, matcher)));
         if (bookingRepository.count(Example.of(probe, matcher)) < 20) {
-            bookingRepository.save(new Booking(bookingDTO.getId(), bookingDTO.getClient_id(), bookingDTO.getPet_id(), bookingDTO.getDate()));
-            return "booking added";
+            probe.setClient_id(bookingDTO.getClient_id());
+            matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "pet_id");
+            if(bookingRepository.count(Example.of(probe, matcher)) < 1) {
+                bookingRepository.save(new Booking(bookingDTO.getId(), bookingDTO.getClient_id(), bookingDTO.getPet_id(), bookingDTO.getDate()));
+                return "booking added";
+            } else {
+                return "you already have a booking for another pet";
+            }
         } else {
             return "booking cannot be added";
         }

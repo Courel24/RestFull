@@ -39,8 +39,12 @@ private BookingService bookingService;
 
     @GetMapping("/pets")
     public String getPetsDayAgenda(@RequestParam String date) {
-        System.out.println(date);
         return petService.getPetsByDate(date).toString();
+    }
+
+    @GetMapping("/pets/{client}")
+    public String getPetsByClient(@PathVariable int client) {
+        return petService.getPetsByClient(client).toString();
     }
 
     @GetMapping("/bookings")

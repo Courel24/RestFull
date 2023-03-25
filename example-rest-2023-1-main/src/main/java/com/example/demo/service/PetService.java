@@ -34,4 +34,11 @@ public class PetService {
         System.out.println(Example.of(probe, matcher));
         return petRepository.findAll(Example.of(probe, matcher));
     }
+
+    public List<Pet> getPetsByClient(int clientDocument){
+        Pet probe = new Pet();
+        probe.setClient(clientDocument);
+        ExampleMatcher matcher = ExampleMatcher.matchingAny();
+        return petRepository.findAll(Example.of(probe, matcher));
+    }
 }
