@@ -1,30 +1,28 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
 @Entity
 @Table(name = "PET")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(cascade = CascadeType.ALL)
+    //@ManyToOne()
     private int id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String date_created;
 
     //foranea
-    @ManyToOne
-    @JoinColumn(name = "Client")
+    @NonNull
+    //@ManyToOne(targetEntity = Client.class)
     private int client;
 }
