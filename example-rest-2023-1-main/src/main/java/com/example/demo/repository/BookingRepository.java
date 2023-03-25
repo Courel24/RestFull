@@ -11,11 +11,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
-    @Modifying
-    @Query("INSERT INTO BOOKING (CLIENT_ID, PET_ID, DATE) VALUES (:clientId, :petId, :date)")
-    int insertBooking(@Param("clientId") int clientId, @Param("petId") int petId, @Param("date") String date);
-
-    @Query("SELECT * FROM BOOKING WHERE DATE = :date")
-    Client getClientPets(@Param("date") String date);
 
 }
