@@ -22,7 +22,7 @@ public class Client {
 
     private String address;
 
-    private String dateCreated;
+    private String date_created;
 
     @Id
     @OneToMany(cascade = CascadeType.ALL)

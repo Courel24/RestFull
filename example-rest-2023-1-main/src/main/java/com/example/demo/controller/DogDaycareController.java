@@ -1,20 +1,21 @@
 package com.example.demo.controller;
 
-
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.ClientDTO;
 import com.example.demo.service.DbService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DogDaycareController {
 
-    private DbService service = new DbService(new MySQL());
+   // private DbService service = new DbService(new MySQL());
+
 
     public DogDaycareController() {
 
     }
-
+ /*
     @PostMapping("/clients")
     @ResponseBody
     public String registerClient(@RequestBody ClientDTO clientDTO) {
@@ -36,5 +37,5 @@ public class DogDaycareController {
     public String getClientBookingHistory(@RequestParam String id) {
         return service.getClientBookingHistory(id).toString();
     }
-
+*/
 }

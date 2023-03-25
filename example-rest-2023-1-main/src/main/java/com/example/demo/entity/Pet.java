@@ -21,7 +21,7 @@ public class Pet {
 
     private String name;
 
-    private String dateCreated;
+    private String date_created;
 
     //foranea
     @ManyToOne
