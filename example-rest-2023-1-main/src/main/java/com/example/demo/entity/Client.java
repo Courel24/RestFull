@@ -1,30 +1,25 @@
 package com.example.demo.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "CLIENT")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 
 public class Client {
+    @NonNull
     private String name;
 
+    @NonNull
     private String address;
 
-    private String dateCreated;
+    @NonNull
+    private String date_created;
 
     @Id
-    @OneToMany(cascade = CascadeType.ALL)
+    //@ManyToOne()
     private int document;
 }
