@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.entity.Booking;
-import com.example.demo.entity.Pet;
 import com.example.demo.repository.BookingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;

@@ -3,14 +3,11 @@ package com.example.demo.controller;
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.ClientDTO;
 import com.example.demo.controller.dto.PetDTO;
-import com.example.demo.entity.Client;
 import com.example.demo.service.BookingService;
 import com.example.demo.service.ClientService;
 import com.example.demo.service.PetService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
