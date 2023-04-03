@@ -12,7 +12,6 @@ import lombok.*;
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@ManyToOne()
     private int id;
 
     @NonNull
@@ -21,8 +20,6 @@ public class Pet {
     @NonNull
     private String date_created;
 
-    //foranea
     @NonNull
-    //@ManyToOne(targetEntity = Client.class)
     private int client;
 }

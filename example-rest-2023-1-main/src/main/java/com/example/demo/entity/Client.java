@@ -20,6 +20,5 @@ public class Client {
     private String date_created;
 
     @Id
-    //@ManyToOne()
     private int document;
 }

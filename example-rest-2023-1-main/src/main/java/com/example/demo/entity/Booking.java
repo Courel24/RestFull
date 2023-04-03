@@ -15,11 +15,9 @@ public class Booking {
     private int id;
 
     @NonNull
-    //@ManyToOne(targetEntity = Client.class)
     private int client_id;
 
     @NonNull
-    //@ManyToOne(targetEntity = Pet.class)
     private int pet_id;
 
     @NonNull
