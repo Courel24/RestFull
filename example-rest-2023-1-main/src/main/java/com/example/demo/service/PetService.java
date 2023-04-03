@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class PetService {
     private PetRepository petRepository;
-    public String insertPet(PetDTO petDTO){
+
+    public String insertPet(PetDTO petDTO) {
         Pet probe = new Pet();
         probe.setClient(petDTO.getClient());
         ExampleMatcher matcher = ExampleMatcher.matchingAny();
@@ -26,16 +27,15 @@ public class PetService {
         }
     }
 
-    public List<Pet> getPetsByDate(String date){
+    public List<Pet> getPetsByDate(String date) {
         Pet probe = new Pet();
         probe.setDate_created(date);
         ExampleMatcher matcher = ExampleMatcher.matchingAny();
 
-        System.out.println(Example.of(probe, matcher));
         return petRepository.findAll(Example.of(probe, matcher));
     }
 
-    public List<Pet> getPetsByClient(int clientDocument){
+    public List<Pet> getPetsByClient(int clientDocument) {
         Pet probe = new Pet();
         probe.setClient(clientDocument);
         ExampleMatcher matcher = ExampleMatcher.matchingAny();

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ClientService {
     private ClientRepository clientRepository;
 
-    public void insertClient(ClientDTO clientDTO){
+    public void insertClient(ClientDTO clientDTO) {
         clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), clientDTO.getDate_created(), clientDTO.getDocument()));
     }
 

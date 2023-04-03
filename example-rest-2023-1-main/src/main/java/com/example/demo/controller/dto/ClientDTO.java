@@ -1,6 +1,7 @@
 package com.example.demo.controller.dto;
 
 import lombok.*;
+
 @Data
 public class ClientDTO {
     private String name;

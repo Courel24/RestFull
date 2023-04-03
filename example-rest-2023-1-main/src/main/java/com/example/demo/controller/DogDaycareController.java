@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RestController
 public class DogDaycareController {
-private ClientService clientService;
-private PetService petService;
-
-private BookingService bookingService;
-
+    private ClientService clientService;
+    private PetService petService;
+    private BookingService bookingService;
 
     @PostMapping("/clients")
     public String registerClient(@RequestBody ClientDTO clientDTO) {
