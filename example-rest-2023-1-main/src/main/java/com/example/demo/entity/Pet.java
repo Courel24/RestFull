@@ -23,5 +23,7 @@ public class Pet {
     private Date date_created;
 
     @NonNull
-    private int client;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client")
+    private Client Client;
 }

@@ -17,10 +17,14 @@ public class Booking {
     private int id;
 
     @NonNull
-    private int client_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     @NonNull
-    private int pet_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 
     @NonNull
     private Date date;
