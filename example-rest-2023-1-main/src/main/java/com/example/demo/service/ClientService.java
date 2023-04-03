@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class ClientService {
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     public void insertClient(ClientDTO clientDTO){
         clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), clientDTO.getDate_created(), clientDTO.getDocument()));

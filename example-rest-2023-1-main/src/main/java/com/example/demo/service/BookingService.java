@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class BookingService {
-    BookingRepository bookingRepository;
+    private BookingRepository bookingRepository;
 
     public String insertBooking(BookingDTO bookingDTO) {
         Booking probe = new Booking();

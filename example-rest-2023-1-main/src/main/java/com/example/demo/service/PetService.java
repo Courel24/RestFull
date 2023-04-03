@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PetService {
-    PetRepository petRepository;
+    private PetRepository petRepository;
     public String insertPet(PetDTO petDTO){
         Pet probe = new Pet();
         probe.setClient(petDTO.getClient());
