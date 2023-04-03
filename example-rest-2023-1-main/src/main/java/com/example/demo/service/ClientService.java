@@ -6,13 +6,15 @@ import com.example.demo.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @AllArgsConstructor
 public class ClientService {
     private ClientRepository clientRepository;
 
     public void insertClient(ClientDTO clientDTO) {
-        clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), clientDTO.getDate_created(), clientDTO.getDocument()));
+        clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), new Date(), clientDTO.getDocument()));
     }
 
 

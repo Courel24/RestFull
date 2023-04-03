@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "PET")
 @Data
@@ -18,7 +20,7 @@ public class Pet {
     private String name;
 
     @NonNull
-    private String date_created;
+    private Date date_created;
 
     @NonNull
     private int client;

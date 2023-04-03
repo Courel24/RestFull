@@ -8,6 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,14 +21,14 @@ public class PetService {
         probe.setClient(petDTO.getClient());
         ExampleMatcher matcher = ExampleMatcher.matchingAny();
         if (petRepository.count(Example.of(probe, matcher)) < 2) {
-            petRepository.save(new Pet(petDTO.getId(), petDTO.getName(), petDTO.getDate_created(), petDTO.getClient()));
+            petRepository.save(new Pet(petDTO.getId(), petDTO.getName(), new Date(), petDTO.getClient()));
             return "pet added";
         } else {
             return "pet cannot be added";
         }
     }
 
-    public List<Pet> getPetsByDate(String date) {
+    public List<Pet> getPetsByDate(Date date) {
         Pet probe = new Pet();
         probe.setDate_created(date);
         ExampleMatcher matcher = ExampleMatcher.matchingAny();

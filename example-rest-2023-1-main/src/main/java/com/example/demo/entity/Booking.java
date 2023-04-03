@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "BOOKING")
 @Data
@@ -21,5 +23,5 @@ public class Booking {
     private int pet_id;
 
     @NonNull
-    private String date;
+    private Date date;
 }

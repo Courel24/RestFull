@@ -5,6 +5,8 @@ import com.example.demo.service.PetService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @RestController
 public class PetController {
@@ -16,7 +18,7 @@ public class PetController {
     }
 
     @GetMapping("/pets")
-    public String getPetsDayAgenda(@RequestParam String date) {
+    public String getPetsDayAgenda(@RequestParam Date date) {
         return petService.getPetsByDate(date).toString();
     }
 
