@@ -12,8 +12,8 @@ public class ClientController {
 
     @PostMapping("/clients")
     public String registerClient(@RequestBody ClientDTO clientDTO) {
-        clientService.insertClient(clientDTO);
-        return "client added";
+        return clientService.insertClient(clientDTO);
+
     }
 
 }

@@ -13,8 +13,9 @@ import java.util.Date;
 public class ClientService {
     private ClientRepository clientRepository;
 
-    public void insertClient(ClientDTO clientDTO) {
+    public String insertClient(ClientDTO clientDTO) {
         clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), new Date(), clientDTO.getDocument()));
+        return "client added";
     }
 
 

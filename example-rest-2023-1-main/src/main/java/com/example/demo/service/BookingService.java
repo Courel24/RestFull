@@ -23,9 +23,9 @@ public class BookingService {
     public String insertBooking(BookingDTO bookingDTO) {
         Booking probe = new Booking();
         probe.setDate(bookingDTO.getDate());
+        probe.setClient(clientRepository.getReferenceById(bookingDTO.getClient_id()));
         ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "client_id", "pet_id");
         if (bookingRepository.count(Example.of(probe, matcher)) < 20) {
-            probe.setClient(clientRepository.getReferenceById(bookingDTO.getClient_id()));
             matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "pet_id", "date");
             if (bookingRepository.count(Example.of(probe, matcher)) < 1) {
                 bookingRepository.save(new Booking(bookingDTO.getId(), clientRepository.getReferenceById(bookingDTO.getClient_id()), petRepository.getReferenceById(bookingDTO.getPet_id()), bookingDTO.getDate()));
