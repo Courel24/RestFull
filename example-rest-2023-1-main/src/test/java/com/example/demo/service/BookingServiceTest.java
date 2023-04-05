@@ -14,12 +14,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.mockito.ArgumentMatchers.isA;
 
 @ExtendWith(MockitoExtension.class)
 public class BookingServiceTest {
@@ -54,6 +58,7 @@ public class BookingServiceTest {
         Mockito.verify(bookingRepository).count(Example.of(probe, matcher));
     }
 
+    @MockitoSettings(strictness = Strictness.LENIENT)
     @Test
     void Given_less_than_20_bookings_and_client_does_not_have_a_booking_When_invoke_insertBooking_Then_return_success_message() {
 
@@ -73,11 +78,14 @@ public class BookingServiceTest {
         Mockito.when(bookingRepository.count(Example.of(probe, matcher))).thenReturn(0L);
         Mockito.when(petRepository.getReferenceById(bookingDTO.getPet_id())).thenReturn(new Pet());
 
+        Mockito.when(bookingRepository.save(new Booking(bookingDTO.getId(), clientRepository.getReferenceById(bookingDTO.getClient_id()), petRepository.getReferenceById(bookingDTO.getPet_id()), bookingDTO.getDate()))).thenReturn(new Booking());
+
         String result = bookingService.insertBooking(bookingDTO);
         Assertions.assertEquals("booking added", result);
         Mockito.verify(clientRepository, Mockito.atLeastOnce()).getReferenceById(bookingDTO.getClient_id());
         Mockito.verify(bookingRepository).count(Example.of(probe, matcher));
-        Mockito.verify(petRepository).getReferenceById(bookingDTO.getPet_id());
+        Mockito.verify(petRepository, Mockito.atLeastOnce()).getReferenceById(bookingDTO.getPet_id());
+        Mockito.verify(bookingRepository).save(isA(Booking.class));
 
     }
 
