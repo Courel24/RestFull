@@ -7,19 +7,22 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: ./example-rest-2023-1-main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
-        working-directory: ./example-rest-2023-1-main
+        
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
       - name: Build with Gradle
-        working-directory: ./example-rest-2023-1-main
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
