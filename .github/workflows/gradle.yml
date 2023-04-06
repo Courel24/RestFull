@@ -3,7 +3,6 @@ name: CI
 on:
   pull_request:
     branches: [ "main" ]
-  push:
 
 permissions:
   contents: read
@@ -11,7 +10,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directort: ./example-rest-2023-1-main
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
