@@ -44,7 +44,7 @@ public class PetControllerTest extends AbstractTest {
 
         ResponseEntity<PetListDTO> result = restTemplate.getForEntity(PATH_PETS_GET_BY_DATE + date, PetListDTO.class);
 
-        Assertions.assertEquals(2, result.getBody().getPetList().size());
+        Assertions.assertEquals(3, result.getBody().getPetList().size());
 
     }
 
