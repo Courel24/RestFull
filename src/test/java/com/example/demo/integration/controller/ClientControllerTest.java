@@ -21,7 +21,7 @@ public class ClientControllerTest extends AbstractTest {
     private static final String PATH_CLIENTS_POST = "/clients";
 
     @Test
-    public void Given_bookData_When_invoke_registerBooking_Then_success_message() {
+    public void Given_clientData_When_invoke_registerClient_Then_success_message() {
 
         ClientDTO dto = new ClientDTO();
         dto.setDocument(1235);

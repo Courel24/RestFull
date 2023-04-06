@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.PetDTO;
-import com.example.demo.entity.Booking;
 import com.example.demo.entity.Client;
 import com.example.demo.entity.Pet;
 import com.example.demo.repository.ClientRepository;
@@ -79,7 +77,7 @@ public class PetServiceTest {
     }
 
     @Test
-    void Given_date_When_invoke_getPetsByDate_Then_return_pet_list_by_date(){
+    void Given_date_When_invoke_getPetsByDate_Then_return_pet_list_by_date() {
 
         Pet probe = new Pet();
         Date date = new Date();
@@ -95,8 +93,9 @@ public class PetServiceTest {
         Mockito.verify(petRepository).findAll(Example.of(probe, matcher));
 
     }
+
     @Test
-    void Given_clientID_When_invoke_getPetsByDate_Then_return_pet_list_by_clientID(){
+    void Given_clientID_When_invoke_getPetsByDate_Then_return_pet_list_by_clientID() {
 
         Pet probe = new Pet();
         int clientID = 123;

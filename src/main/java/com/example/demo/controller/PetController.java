@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.PetDTO;
 import com.example.demo.controller.dto.PetListDTO;
 import com.example.demo.controller.dto.PetResponseDTO;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor

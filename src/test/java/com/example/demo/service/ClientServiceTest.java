@@ -29,7 +29,7 @@ public class ClientServiceTest {
 
     @MockitoSettings(strictness = Strictness.LENIENT)
     @Test
-    void Given_clientDTO_When_invoke_insertClient_Then_return_nonException(){
+    void Given_clientDTO_When_invoke_insertClient_Then_return_nonException() {
 
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setAddress("123");

@@ -25,7 +25,7 @@ public class PetControllerTest extends AbstractTest {
     private static final String PATH_PETS_POST = "/pets";
 
     @Test
-    public void Given_bookData_When_invoke_registerBooking_Then_success_message() {
+    public void Given_petData_When_invoke_registerPet_Then_success_message() {
 
         PetDTO dto = new PetDTO();
         dto.setId(1);
@@ -39,18 +39,18 @@ public class PetControllerTest extends AbstractTest {
     }
 
     @Test
-    public void Given_clientID_When_invoke_getClientBookingHistory_Then_booking_history() {
+    public void Given_date_When_invoke_getPetsDayAgenda_Then_pet_list_size_two() {
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-        ResponseEntity<PetListDTO> result = restTemplate.getForEntity(PATH_PETS_GET_BY_DATE+date, PetListDTO.class);
+        ResponseEntity<PetListDTO> result = restTemplate.getForEntity(PATH_PETS_GET_BY_DATE + date, PetListDTO.class);
 
         Assertions.assertEquals(2, result.getBody().getPetList().size());
 
     }
 
     @Test
-    public void Given_clientID_When_invoke_getClientBookingHistory_Then_booking_historyasd() {
-        ResponseEntity<PetListDTO> result = restTemplate.exchange(PATH_PETS_GET_BY_CLIENT, HttpMethod.GET, HttpEntity.EMPTY,PetListDTO.class, 123);
+    public void Given_clientID_When_invoke_getPetsByClient_Then_pet_list_size_one() {
+        ResponseEntity<PetListDTO> result = restTemplate.exchange(PATH_PETS_GET_BY_CLIENT, HttpMethod.GET, HttpEntity.EMPTY, PetListDTO.class, 123);
         Assertions.assertEquals(1, result.getBody().getPetList().size());
 
     }

@@ -23,7 +23,7 @@ public class BookingControllerTest extends AbstractTest {
     private static final String PATH_BOOKINGS_POST = "/bookings";
 
     @Test
-    public void Given_clientID_When_invoke_getClientBookingHistory_Then_booking_history() {
+    public void Given_clientID_When_invoke_getClientBookingHistory_Then_booking_list_size_one() {
         ResponseEntity<BookingListDTO> result = restTemplate.getForEntity(PATH_BOOKINGS_GET + 444, BookingListDTO.class);
         Assertions.assertEquals(1, result.getBody().getBookingList().size());
 
