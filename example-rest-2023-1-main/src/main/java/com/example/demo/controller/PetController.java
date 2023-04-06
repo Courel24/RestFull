@@ -1,11 +1,17 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.PetDTO;
+import com.example.demo.controller.dto.PetListDTO;
+import com.example.demo.controller.dto.PetResponseDTO;
 import com.example.demo.service.PetService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -13,18 +19,28 @@ public class PetController {
     private PetService petService;
 
     @PostMapping("/pets")
-    public String registerPet(@RequestBody PetDTO petDTO) {
-        return petService.insertPet(petDTO);
+    public PetResponseDTO registerPet(@RequestBody PetDTO petDTO) {
+        return new PetResponseDTO(petService.insertPet(petDTO));
     }
 
     @GetMapping("/pets")
-    public String getPetsDayAgenda(@RequestParam Date date) {
-        return petService.getPetsByDate(date).toString();
+    public PetListDTO getPetsDayAgenda(@RequestParam String date) throws ParseException {
+        return new PetListDTO(
+                petService.getPetsByDate(new SimpleDateFormat("yyyy-MM-dd").parse(date))
+                        .stream()
+                        .map(PetDTO::fromModel)
+                        .collect(Collectors.toList())
+        );
     }
 
     @GetMapping("/pets/{client}")
-    public String getPetsByClient(@PathVariable int client) {
-        return petService.getPetsByClient(client).toString();
+    public PetListDTO getPetsByClient(@PathVariable int client) {
+        return new PetListDTO(
+                petService.getPetsByClient(client)
+                        .stream()
+                        .map(PetDTO::fromModel)
+                        .collect(Collectors.toList())
+        );
     }
 
 }

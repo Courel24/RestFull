@@ -28,4 +28,5 @@ public class Booking {
 
     @NonNull
     private Date date;
+
 }
