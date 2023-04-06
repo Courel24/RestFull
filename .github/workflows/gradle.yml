@@ -7,10 +7,6 @@ on:
 permissions:
   contents: read
 
-defaults:
-  run:
-    working-directory: ./example-rest-2023-1-main
-
 jobs:
   build:
     runs-on: ubuntu-latest
