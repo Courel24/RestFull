@@ -4,6 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+*.onyx-silo-382718-78bc1aef3add.json
 
 ### STS ###
 .apt_generated

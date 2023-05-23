@@ -56,7 +56,7 @@ public class BookingService {
         ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "client");
         Optional<Booking> booking = bookingRepository.findOne(Example.of(probe, matcher));
         if (booking.isPresent()) {
-            bookingRepository.delete(booking.get());
+            //bookingRepository.delete(booking.get());
             pickupPetNotificationService.sendPickupPetNotification(booking.get().getClient().getEmail(), booking.get().getClient().getName(), booking.get().getPet().getName());
             return "Booking deleted successfully";
         } else {
