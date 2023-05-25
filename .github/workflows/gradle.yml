@@ -10,9 +10,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./DogDayCare
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -25,6 +22,7 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
+          build-root-directory: ./DogDayCare
       - name: Add coverage to PR
         id: jacoco
         uses: madrapps/jacoco-report@v1.3
