@@ -1,6 +1,6 @@
-package test.java.com.example.demo.integration.controller;
+package com.example.demo.integration.controller;
 
-import test.java.com.example.demo.AbstractTest;
+import com.example.demo.AbstractTest;
 import com.example.demo.controller.dto.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,8 +31,8 @@ public class PetControllerTest extends AbstractTest {
         dto.setId(1);
         dto.setName("Oswe");
         dto.setClient(123);
-        dto.setDate_created(new Date());
-        dto.setDate_created(new Date());
+        dto.setDate_created(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        dto.setDate_created(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         ResponseEntity<PetResponseDTO> result = restTemplate.postForEntity(PATH_PETS_POST, dto, PetResponseDTO.class);
         Assertions.assertEquals("pet added", result.getBody().getResponse());
 

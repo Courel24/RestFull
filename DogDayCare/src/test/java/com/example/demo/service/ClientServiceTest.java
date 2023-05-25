@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -35,8 +36,9 @@ public class ClientServiceTest {
         clientDTO.setAddress("123");
         clientDTO.setName("cosita");
         clientDTO.setDocument(123);
-        clientDTO.setDate_created(new Date());
-        Mockito.when(clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), clientDTO.getDate_created(), clientDTO.getDocument()))).thenReturn(new Client());
+        clientDTO.setEmail("asd@asd.asd");
+        clientDTO.setDate_created(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        Mockito.when(clientRepository.save(new Client(clientDTO.getName(), clientDTO.getAddress(), clientDTO.getDate_created(), clientDTO.getEmail() ,clientDTO.getDocument()))).thenReturn(new Client());
         String result = clientService.insertClient(clientDTO);
         Assertions.assertEquals("client added", result);
         Mockito.verify(clientRepository).save(isA(Client.class));

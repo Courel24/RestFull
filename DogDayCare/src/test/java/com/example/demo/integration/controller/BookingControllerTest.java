@@ -1,16 +1,20 @@
-package test.java.com.example.demo.integration.controller;
+package com.example.demo.integration.controller;
 
-import test.java.com.example.demo.AbstractTest;
+import com.example.demo.AbstractTest;
 import com.example.demo.controller.dto.BookingDTO;
 import com.example.demo.controller.dto.BookingListDTO;
 import com.example.demo.controller.dto.BookingResponseDTO;
+import com.example.demo.controller.dto.PetListDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @ActiveProfiles("test")
@@ -21,6 +25,7 @@ public class BookingControllerTest extends AbstractTest {
 
     private static final String PATH_BOOKINGS_GET = "/bookings?id=";
     private static final String PATH_BOOKINGS_POST = "/bookings";
+    private static final String PATH_BOOKINGS_DELETE = "/bookings?id=";
 
     @Test
     public void Given_clientID_When_invoke_getClientBookingHistory_Then_booking_list_size_one() {
@@ -36,7 +41,7 @@ public class BookingControllerTest extends AbstractTest {
         dto.setClient_id(123);
         dto.setId(1);
         dto.setPet_id(2);
-        dto.setDate(new Date());
+        dto.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         ResponseEntity<BookingResponseDTO> result = restTemplate.postForEntity(PATH_BOOKINGS_POST, dto, BookingResponseDTO.class);
         Assertions.assertEquals("booking added", result.getBody().getResponse());
 

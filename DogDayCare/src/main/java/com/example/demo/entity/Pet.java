@@ -3,8 +3,6 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "PET")
 @Data
@@ -20,7 +18,7 @@ public class Pet {
     private String name;
 
     @NonNull
-    private Date date_created;
+    private String date_created;
 
     @NonNull
     @ManyToOne(fetch = FetchType.LAZY)

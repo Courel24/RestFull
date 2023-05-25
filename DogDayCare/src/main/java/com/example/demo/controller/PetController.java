@@ -8,11 +8,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PetController {
     private PetService petService;
 
@@ -24,7 +24,7 @@ public class PetController {
     @GetMapping("/pets")
     public PetListDTO getPetsDayAgenda(@RequestParam String date) throws ParseException {
         return new PetListDTO(
-                petService.getPetsByDate(new SimpleDateFormat("yyyy-MM-dd").parse(date))
+                petService.getPetsByDate(date)
                         .stream()
                         .map(PetDTO::fromModel)
                         .collect(Collectors.toList())

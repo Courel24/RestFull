@@ -8,16 +8,17 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookingController {
     private BookingService bookingService;
 
     @PostMapping("/bookings")
     public BookingResponseDTO registerBooking(@RequestBody BookingDTO bookingDTO) {
+        System.out.println(bookingDTO.toString());
         return new BookingResponseDTO(bookingService.insertBooking(bookingDTO));
     }
 
@@ -29,9 +30,9 @@ public class BookingController {
                 .collect(Collectors.toList()));
     }
 
-    @DeleteMapping("/bookings")
-    public String deleteBookingByPetIdAndDate(@RequestParam int id, @RequestParam String date) throws ParseException {
-        return bookingService.deleteBookingByPetIdAndDate(id, new SimpleDateFormat("yyyy-MM-dd").parse(date));
+    @PostMapping("/delete_bookings")
+    public BookingResponseDTO deleteBookingByPetIdAndDate(@RequestParam int pet_id, @RequestParam String date) {
+        return new BookingResponseDTO(bookingService.deleteBookingByPetIdAndDate(pet_id, date));
     }
 
 }

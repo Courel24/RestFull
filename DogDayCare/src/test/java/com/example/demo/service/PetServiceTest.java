@@ -17,6 +17,7 @@ import org.mockito.quality.Strictness;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,7 +60,7 @@ public class PetServiceTest {
     void Given_less_than_2_pets_When_invoke_insertPet_Then_return_success_message() {
 
         PetDTO petDTO = new PetDTO();
-        petDTO.setDate_created(new Date());
+        petDTO.setDate_created(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         petDTO.setId(123);
         petDTO.setName("Roberto");
         petDTO.setClient(123);
@@ -68,7 +69,7 @@ public class PetServiceTest {
         probe.setClient(clientRepository.getReferenceById(petDTO.getClient()));
         ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "name", "date_created");
         Mockito.when(petRepository.count(Example.of(probe, matcher))).thenReturn(1L);
-        Mockito.when(petRepository.save(new Pet(petDTO.getId(), petDTO.getName(), new Date(), clientRepository.getReferenceById(petDTO.getClient())))).thenReturn(new Pet());
+        Mockito.when(petRepository.save(new Pet(petDTO.getId(), petDTO.getName(), new SimpleDateFormat("yyyy-MM-dd").format(new Date()), clientRepository.getReferenceById(petDTO.getClient())))).thenReturn(new Pet());
         String result = petService.insertPet(petDTO);
         Assertions.assertEquals("pet added", result);
         Mockito.verify(clientRepository, Mockito.atLeastOnce()).getReferenceById(petDTO.getClient());
@@ -80,7 +81,7 @@ public class PetServiceTest {
     void Given_date_When_invoke_getPetsByDate_Then_return_pet_list_by_date() {
 
         Pet probe = new Pet();
-        Date date = new Date();
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         probe.setDate_created(date);
 
         ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "name", "Client");
@@ -88,7 +89,7 @@ public class PetServiceTest {
         List<Pet> datePets = new ArrayList<>();
         datePets.add(probe);
         Mockito.when(petRepository.findAll(Example.of(probe, matcher))).thenReturn(datePets);
-        List result = petService.getPetsByDate(date);
+        List result = petService.getPetsByDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         Assertions.assertEquals(datePets, result);
         Mockito.verify(petRepository).findAll(Example.of(probe, matcher));
 

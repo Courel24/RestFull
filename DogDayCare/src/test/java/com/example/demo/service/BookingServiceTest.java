@@ -20,9 +20,11 @@ import org.mockito.quality.Strictness;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.isA;
 
@@ -34,6 +36,8 @@ public class BookingServiceTest {
     private ClientRepository clientRepository;
     @Mock
     private PetRepository petRepository;
+    @Mock
+    private PickupPetNotificationService pickupPetNotificationService;
     @InjectMocks
     private BookingService bookingService;
 
@@ -42,7 +46,7 @@ public class BookingServiceTest {
     void Given_more_than_20_bookings_When_invoke_insertBooking_Then_return_limit_message() {
 
         BookingDTO bookingDTO = new BookingDTO();
-        bookingDTO.setDate(new Date());
+        bookingDTO.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         Booking probe = new Booking();
         probe.setDate(bookingDTO.getDate());
         bookingDTO.setClient_id(1234);
@@ -64,7 +68,7 @@ public class BookingServiceTest {
     void Given_less_than_20_bookings_and_client_does_not_have_a_booking_When_invoke_insertBooking_Then_return_success_message() {
 
         BookingDTO bookingDTO = new BookingDTO();
-        bookingDTO.setDate(new Date());
+        bookingDTO.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         bookingDTO.setClient_id(123);
         bookingDTO.setPet_id(1234);
         Mockito.when(clientRepository.getReferenceById(bookingDTO.getClient_id())).thenReturn(new Client());
@@ -75,7 +79,7 @@ public class BookingServiceTest {
         Mockito.when(bookingRepository.count(Example.of(probe, matcher))).thenReturn(19L);
 
         probe.setClient(clientRepository.getReferenceById(bookingDTO.getClient_id()));
-        matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "pet_id", "date");
+        matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "pet_id");
         Mockito.when(bookingRepository.count(Example.of(probe, matcher))).thenReturn(0L);
         Mockito.when(petRepository.getReferenceById(bookingDTO.getPet_id())).thenReturn(new Pet());
 
@@ -94,7 +98,7 @@ public class BookingServiceTest {
     void Given_less_than_20_bookings_and_client_have_a_booking_When_invoke_insertBooking_Then_return_full_booking_message() {
 
         BookingDTO bookingDTO = new BookingDTO();
-        bookingDTO.setDate(new Date());
+        bookingDTO.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         bookingDTO.setClient_id(123);
         Mockito.when(clientRepository.getReferenceById(bookingDTO.getClient_id())).thenReturn(new Client());
 
@@ -104,7 +108,7 @@ public class BookingServiceTest {
         Mockito.when(bookingRepository.count(Example.of(probe, matcher))).thenReturn(19L);
 
         probe.setClient(clientRepository.getReferenceById(bookingDTO.getClient_id()));
-        matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "pet_id", "date");
+        matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "pet_id");
         Mockito.when(bookingRepository.count(Example.of(probe, matcher))).thenReturn(1L);
 
         String result = bookingService.insertBooking(bookingDTO);
@@ -114,6 +118,7 @@ public class BookingServiceTest {
 
     }
 
+    @MockitoSettings(strictness = Strictness.LENIENT)
     @Test
     void Given_clientID_When_invoke_getClientBookingHistory_Then_return_booking_history() {
         Booking probe = new Booking();
@@ -130,5 +135,22 @@ public class BookingServiceTest {
         Mockito.verify(clientRepository, Mockito.atLeastOnce()).getReferenceById(clientDocument);
     }
 
+    @Test
+    void Given_existingBooking_When_invoke_deleteBookingByPetIdAndDate_Then_Return_successful_message() {
+        Booking probe = new Booking();
+        int pet_id = 123;
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        Mockito.when(petRepository.getReferenceById(pet_id)).thenReturn(new Pet());
+        probe.setPet(petRepository.getReferenceById(pet_id));
+        probe.setDate(date);
+        ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "client");
+        Mockito.when(bookingRepository.findOne(Example.of(probe, matcher))).thenReturn(Optional.of(new Booking(0, new Client(), new Pet(), date)));
+        String result = bookingService.deleteBookingByPetIdAndDate(pet_id, date);
+        Mockito.verify(bookingRepository).delete(new Booking(0, new Client(), new Pet(), date));
+        Mockito.verify(pickupPetNotificationService).sendPickupPetNotification(null, null,null);
+        Mockito.verify(petRepository, Mockito.atLeastOnce()).getReferenceById(pet_id);
+        Mockito.verify(bookingRepository).findOne(Example.of(probe, matcher));
+        Assertions.assertEquals("Booking deleted successfully", result);
+    }
 
 }
