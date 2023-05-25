@@ -15,13 +15,13 @@ public class NotifierService {
 
      public String sendNotificationToClient(PickupPetNotificationDTO pickupPetNotificationDTO){
         Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.host", "smtp");
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
 
-        final String username = "angeldagosa@gmail.com";
-        final String password = "xygvcekvazsauoov";
+        final String username = "mail";
+        final String password = "pass";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
