@@ -29,7 +29,7 @@ public class BookingController {
                 .collect(Collectors.toList()));
     }
 
-    @PostMapping("/delete_bookings")
+    @DeleteMapping("/bookings")
     public BookingResponseDTO deleteBookingByPetIdAndDate(@RequestParam int pet_id, @RequestParam String date) {
         return new BookingResponseDTO(bookingService.FinalizeBookingByPetIdAndDate(pet_id, date));
     }
