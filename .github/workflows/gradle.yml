@@ -19,9 +19,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Build with Gradle
+        working-directory: ./DogDayCare
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: ./DogDayCare build
+          arguments: build
       - name: Add coverage to PR
         id: jacoco
         uses: madrapps/jacoco-report@v1.3
