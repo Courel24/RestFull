@@ -18,9 +18,9 @@ public class NotifierListenerController {
     private NotifierService notifierService;
 
     @RabbitListener(queues = {"PickupNotificationQueue"})
-    public void receiveOrder(String pickupPetNotificationJson) throws IOException {
+    public String receiveOrder(String pickupPetNotificationJson) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         PickupPetNotificationDTO pickupPetNotificationDTO = mapper.readValue(pickupPetNotificationJson, PickupPetNotificationDTO.class);
-        System.out.println(notifierService.sendNotificationToClient(pickupPetNotificationDTO));
+        return notifierService.sendNotificationToClient(pickupPetNotificationDTO);
     }
 }
