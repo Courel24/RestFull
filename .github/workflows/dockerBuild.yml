@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: Descargando el proyecto
-      - uses: dogdaycare/docker-build-push@v6
+      - uses: mr-smithers-excellent/docker-build-push@v6
         name: Construir Imagen & push Docker image
         with:
           image: repo/image
