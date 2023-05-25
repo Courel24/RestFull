@@ -1,4 +1,4 @@
-name: CI and CD
+name: Notifier CI and CD
 
 on:
   pull_request:
