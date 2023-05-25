@@ -17,6 +17,6 @@ jobs:
           image: repo/image
           tags: v1, latest
           registry: registry-1.docker.io
-          dockerfile: Dockerfile.ci
+          dockerfile: ./DogDayCare/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
