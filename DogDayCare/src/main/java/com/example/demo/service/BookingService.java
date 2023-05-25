@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.controller.dto.BookingDTO;
-import com.example.demo.controller.dto.PickupPetNotificationDTO;
 import com.example.demo.entity.Booking;
 import com.example.demo.repository.BookingRepository;
 import com.example.demo.repository.ClientRepository;
@@ -11,8 +10,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +47,7 @@ public class BookingService {
         return bookingRepository.findAll(Example.of(probe, matcher));
     }
 
-    public String deleteBookingByPetIdAndDate(int petId, String date){
+    public String FinalizeBookingByPetIdAndDate(int petId, String date){
         Booking probe = new Booking();
         probe.setPet(petRepository.getReferenceById(petId));
         probe.setDate(date);
@@ -59,9 +56,9 @@ public class BookingService {
         if (booking.isPresent()) {
             bookingRepository.delete(booking.get());
             pickupPetNotificationService.sendPickupPetNotification(booking.get().getClient().getEmail(), booking.get().getClient().getName(), booking.get().getPet().getName());
-            return "Booking deleted successfully";
+            return "booking finalized successfully";
         } else {
-            return "Booking cannot be deleted";
+            return "booking cannot be finalized";
         }
     }
 }

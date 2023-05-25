@@ -7,7 +7,6 @@ import com.example.demo.entity.Pet;
 import com.example.demo.repository.BookingRepository;
 import com.example.demo.repository.ClientRepository;
 import com.example.demo.repository.PetRepository;
-import com.example.demo.service.BookingService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -145,12 +144,12 @@ public class BookingServiceTest {
         probe.setDate(date);
         ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnorePaths("id", "client");
         Mockito.when(bookingRepository.findOne(Example.of(probe, matcher))).thenReturn(Optional.of(new Booking(0, new Client(), new Pet(), date)));
-        String result = bookingService.deleteBookingByPetIdAndDate(pet_id, date);
+        String result = bookingService.FinalizeBookingByPetIdAndDate(pet_id, date);
         Mockito.verify(bookingRepository).delete(new Booking(0, new Client(), new Pet(), date));
         Mockito.verify(pickupPetNotificationService).sendPickupPetNotification(null, null,null);
         Mockito.verify(petRepository, Mockito.atLeastOnce()).getReferenceById(pet_id);
         Mockito.verify(bookingRepository).findOne(Example.of(probe, matcher));
-        Assertions.assertEquals("Booking deleted successfully", result);
+        Assertions.assertEquals("booking finalized successfully", result);
     }
 
 }

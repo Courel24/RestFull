@@ -7,7 +7,6 @@ import com.example.demo.service.BookingService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -32,7 +31,7 @@ public class BookingController {
 
     @PostMapping("/delete_bookings")
     public BookingResponseDTO deleteBookingByPetIdAndDate(@RequestParam int pet_id, @RequestParam String date) {
-        return new BookingResponseDTO(bookingService.deleteBookingByPetIdAndDate(pet_id, date));
+        return new BookingResponseDTO(bookingService.FinalizeBookingByPetIdAndDate(pet_id, date));
     }
 
 }
