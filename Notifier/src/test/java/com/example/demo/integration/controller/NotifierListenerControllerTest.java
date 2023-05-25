@@ -3,7 +3,6 @@ package com.example.demo.integration.controller;
 import com.example.demo.AbstractTest;
 import com.example.demo.controller.NotifierListenerController;
 import com.example.demo.controller.dto.PickupPetNotificationDTO;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.Assertions;

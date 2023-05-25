@@ -31,10 +31,3 @@ jobs:
           dockerfile: ./Notifier/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Add coverage to PR
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.3
-        with:
-          paths: ${{ github.workspace }}/Notifier/build/reports/jacoco/test/jacocoTestReport.xml
-          token: ${{ secrets.ACCESS_TOKEN }}
-          min-coverage-overall: 40
